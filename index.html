@@ -1,0 +1,158 @@
+
+<html>
+	<head>
+
+		<!-- DataTables and Plugins -->
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/cr-1.5.2/fc-3.3.1/fh-3.1.7/kt-2.5.3/r-2.2.6/rg-1.1.2/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.css"/>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-colvis-1.6.4/b-html5-1.6.4/b-print-1.6.4/cr-1.5.2/fc-3.3.1/fh-3.1.7/kt-2.5.3/r-2.2.6/rg-1.1.2/sc-2.0.3/sb-1.0.0/sp-1.2.0/datatables.min.js"></script>
+
+
+		<!--- Parsers for BibTex and CSV-->
+		<script src="https://unpkg.com/papaparse@5.3.0/papaparse.min.js"></script>
+		<script src="/db/bibtex/bibtexparse.js"></script>
+
+
+		<!--- UIKIT -->
+		<!-- UIkit CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
+
+		<!-- UIkit JS -->
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.uikit.min.css"/>
+		<script src="https://cdn.datatables.net/1.10.22/js/dataTables.uikit.min.js"></script>
+
+
+		<!--- HIGHLIGHT SEARCH RESULTS -->
+		<script src="https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)"></script>
+		<script src="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css"/>
+
+
+
+		<!-- Livereload -->
+		<script>
+			document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+			':35729/livereload.js?snipver=1"></' + 'script>');
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/app.css"/>
+		<script src="db/tableFields.js"></script>
+		<script src="db/csv/CSVHandling.js"></script>
+		<script src="lib/app.js"></script>
+	</head>
+	<body class="dt-example dt-example-uikit">
+		<div uk-sticky="media: 960"
+			class="uk-navbar-container tm-navbar-container uk-sticky uk-active uk-sticky-below uk-sticky-fixed"
+			style="position: fixed; top: 0px; width: 1489px;">
+			<div class="uk-container uk-container-expand">
+				<nav class="uk-navbar">
+					<div class="uk-navbar-left"><a href="../" class="uk-navbar-item uk-logo">
+							<img src="/images/logo.png" class="uk-margin-small-right" style="height:100px">Ambient
+							Directory - A list of ambient, calm and 'unremarkable' technologies
+						</a></div>
+					<div class="uk-navbar-right">
+						<ul class="uk-navbar-nav uk-visible@m">
+							<!--
+							<li class="uk-active"><a href="#">List</a></li>
+							<li><a href="#">Documentation</a></li>
+							-->
+							<li><a href="https://github.com/carstenschwede/ambient.directory/issues" target="_blank">GitHub</a></li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+
+
+
+<div id="modal-container" class="uk-modal-container" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body " uk-overflow-auto>
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+		<h2 class="uk-modal-title">Publish Changes</h2>
+		Thank you for wanting to publish your changes to the community.<br/><br/>Please note that by pressing "Save" the list of changes shown belown is sent to the maintainers of the list for manual approval. <br/>
+		Pressing "Cancel" will keep your local changes without sending them.<br/>
+		<div id='githubIssueText'></div>
+		<div class="uk-modal-footer uk-text-right">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Not yet</button>
+            <button class="uk-button uk-button-primary" type="button" onClick="sendGitHubIssue()">Send</button>
+        </div>
+	</div>
+</div>
+
+
+	<div id="loadingIndicator">
+		<img src="/images/dotsloader.gif"/><br/>
+		Parsing database and bibliography. Please wait...
+	</div>
+		<div class="container">
+
+			<section>
+			<table id="example" class="uk-table uk-table-hover uk-table-striped" style="width:100%">
+
+			<thead>
+				<tr>
+					<th colspan=10 class="headerGroup">General</th>
+					<th colspan=6 class="headerGroup">Meta</th>
+					<th colspan=8 class="headerGroup">Mapping</th>
+					<th colspan=7 class="headerGroup">Output</th>
+					<th colspan=8 class="headerGroup">Evaluation</th>
+				</tr>
+				<tr>
+					<th>DB.ID</th>
+					<th>META.Name</th>
+					<th>BIBTEX.title</th>
+					<th>BIBTEX.author</th>
+					<th>BIBTEX.year</th>
+					<th>BIBTEX.doi</th>
+					<th>BIBTEX.url</th>
+					<th>PUB.Citations</th>
+					<th>PUB.CitationsPerYear</th>
+					<th>BIBTEX.abstract</th>
+
+					<th>META.Description</th>
+					<th>META.SPECIFIC_NEW_USE_CASE</th>
+					<th>META.FOCUS</th>
+					<th>META.GOAL</th>
+					<th>META.TOPIC</th>
+					<th>META.SETTING</th>
+
+					<th>MAPPING.HAS_MAPPING</th>
+					<th>MAPPING.FROM</th>
+					<th>MAPPING.ORIGIN</th>
+					<th>MAPPING.TO</th>
+					<th>MAPPING.CONCEPT</th>
+					<th>MAPPING.REPRESENTATION</th>
+					<th>MAPPING.MEANING</th>
+					<th>MAPPING.LEVEL</th>
+
+					<th>OUTPUT.ACTIVATION</th>
+					<th>OUTPUT.TRANSITION_TO_FOREGROUND</th>
+					<th>OUTPUT.MEDIUM</th>
+					<th>OUTPUT.MODALITY</th>
+					<th>OUTPUT.LOCALIZATION</th>
+					<th>OUTPUT.ACCESS</th>
+					<th>OUTPUT.INFORMATION_BANDWIDTH</th>
+
+					<th>EVAL.SAMPLE_SIZE</th>
+					<th>EVAL.TIME_PERIOD</th>
+					<th>EVAL.SETTING</th>
+					<th>EVAL.STUDY_GROUP</th>
+					<th>EVAL.DEVSTAGE</th>
+					<th>EVAL.USABILITY</th>
+					<th>EVAL.COGNITIVE_LOAD</th>
+					<th>EVAL.CHANGED_BEHAVIOUR</th>
+				</tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+			</table></section></div>
+	</body>
+</html>
