@@ -19,7 +19,7 @@ const bibtexparse = require("../db/bibtex/bibtexparse.js");
 
   bib = bib.filter(entry => db[entry.citationKey]);
   bib.forEach(entry => {
-	  delete entry.file;
+	  delete entry.entryTags.file;
 	  delete entry.notes;
   })
 
