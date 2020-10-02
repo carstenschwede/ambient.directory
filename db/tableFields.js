@@ -149,28 +149,36 @@ let tableFields = {
 			width: 200
 		}
 	},
-	"META.SPECIFIC_NEW_USE_CASE": {
-		title:"Use Case",
-		filter:true,
-		searchable:true,
-		description: "",
-		editable: ["YES","NO","?"],
-		render: {
-			width: "auto"
-		}
-	},
-	"META.FOCUS": {
+
+	"META.SCOPE": {
 		description: "",
 		searchable:true,
 		filter:true,
 		editable: multiple({
-			"AmI":"Ambient Intelligence",
+			"AMI":"Ambient Intelligence",
 			"AD":"Ambient Display",
 			"AIS":"Ambient Information System",
 			"UI": "User Interface",
 			"TUI":"Tangible User Interface",
 			"IOT":"Internet-of-Things",
 			"DEL":"Not Ambient (Delete)"
+		}),
+		render: {
+			width: 200
+		}
+	},"META.FOCUS": {
+		description: "",
+		searchable:true,
+		filter:true,
+		editable: multiple({
+			"DEFTAX": "Taxonomy",
+			"PROTO": "Protoyping",
+			"EVAL":"Evaluation",
+			"ISSUES":"Issues",
+			"CONCEPT":"Concept",
+			"USECASE":"Use Case",
+			"DEVICE":"Device",
+			"OTHER":"Other"
 		}),
 		render: {
 			width: 200
@@ -369,7 +377,7 @@ let tableFields = {
 	"EVAL.USABILITY": {
 		description: "",
 		filter:true,
-		editable: multiple(["QUESTIONNAIRE","INTERVIEW","COMMENTS","OBSERVATION","HEURISTIC_EVALUATION","USAGE_STATISTIC","TASK_PERFORMANCE"]),
+		editable: multiple(["QUESTIONNAIRE","INTERVIEW","COMMENTS","OBSERVATION","HEURISTIC_EVALUATION","USAGE_STATISTIC","TASK_PERFORMANCE","[NA]"]),
 		render: {
 			width: 200
 		}
@@ -377,7 +385,7 @@ let tableFields = {
 	"EVAL.COGNITIVE_LOAD": {
 		description: "",
 		filter:true,
-		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL (EYE)","PHYSIOLOGICAL (BRAIN)","PHYSIOLOGICAL (HEART)","PHYSIOLOGICAL (RESP)","PHYSIOLOGICAL (SKIN)"]),
+		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL (EYE)","PHYSIOLOGICAL (BRAIN)","PHYSIOLOGICAL (HEART)","PHYSIOLOGICAL (RESP)","PHYSIOLOGICAL (SKIN)","[NA]"]),
 		render: {
 			width: 200
 		}
@@ -385,7 +393,7 @@ let tableFields = {
 	"EVAL.CHANGED_BEHAVIOUR": {
 		description: "",
 		filter:true,
-		editable: multiple(["SUBJECTIVE","OBJECTIVE"]),
+		editable: multiple(["SUBJECTIVE","OBJECTIVE","[NA]"]),
 		render: {
 			width: "auto"
 		}

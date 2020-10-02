@@ -1,3 +1,4 @@
+/*
 let csvHeaders = ["DB.ID","DB.REVISION",
 							"PUB.CitationKey",
 							"PUB.Title",
@@ -8,7 +9,7 @@ let csvHeaders = ["DB.ID","DB.REVISION",
 							"META.Name",
 							"META.Description",
 							"META.SPECIFIC_NEW_USE_CASE",
-							"META.FOCUS",
+							"META.SCOPE",
 							"META.GOAL",
 							"META.TOPIC",
 							"META.SETTING",
@@ -35,11 +36,14 @@ let csvHeaders = ["DB.ID","DB.REVISION",
 							"EVAL.USABILITY",
 							"EVAL.COGNITIVE_LOAD",
 							"EVAL.CHANGED_BEHAVIOUR"];
+							*/
 
+let csvHeaders;
 let convertCSV = function(results) {
+	csvHeaders = results[0];
 	results = results.slice(1);
 	let transformed = results.map(row => {
-		return csvHeaders.reduce((acc,cur,idx) => {
+		let result = csvHeaders.reduce((acc,cur,idx) => {
 			if (!cur) return acc;
 			row[idx] = row[idx].trim();
 			let [field,subField] = cur.split(".");
@@ -49,10 +53,16 @@ let convertCSV = function(results) {
 				row[idx] = parseInt(row[idx]);
 			}
 
+			if (cur == "META.SCOPE") {
+				row[idx] = row[idx].toUpperCase();
+			}
+
 			acc[field][subField] = row[idx];
 			return acc;
-		},{})
+		},{});
+		return result;
 	});
+
 	return transformed;
 }
 
@@ -78,6 +88,9 @@ let loadCSV = function(url,Papa) {
 };
 
 let exportCSV = (rows,Papa) => {
+	if (!csvHeaders) {
+		return console.error("CSV has not been loaded yet, can't export anything");
+	}
 	let csvRows = rows.map(row => {
 		let result = {};
 		csvHeaders.forEach(header => {
@@ -93,7 +106,7 @@ let exportCSV = (rows,Papa) => {
 };
 
 let CSVHandling = {
-	csvHeaders,parseCSV,loadCSV,exportCSV
+	parseCSV,loadCSV,exportCSV
 };
 
 (function (global) {
