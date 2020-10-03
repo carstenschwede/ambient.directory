@@ -197,7 +197,7 @@ let tableFields = {
 		description: "",
 		searchable:true,
 		filter:true,
-		editable: multiple(["HEALTH","ENVIRONMENT","RESOURCES","EVENTS","SOCIAL","OTHER"]),
+		editable: multiple(["HEALTH","ENVIRONMENT","RESOURCES","EVENTS","SOCIAL","SECURITY","OTHER"]),
 		render: {
 			width: "auto"
 		}

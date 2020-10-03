@@ -40,8 +40,14 @@
 			document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
 			':35729/livereload.js?snipver=1"></' + 'script>');
 		</script>
+		<script src="lib/jQuery.FileDrop.all.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/app.css"/>
+		<script src="lib/utils.js"></script>
+		<script src="lib/enableAutoFilter.js"></script>
+		<script src="lib/enableDragDrop.js"></script>
+		<script src="lib/enableSearchShortcut.js"></script>
+		<script src="lib/enableEditing.js"></script>
 		<script src="db/tableFields.js"></script>
 		<script src="db/csv/CSVHandling.js"></script>
 		<script src="lib/app.js"></script>
@@ -154,6 +160,28 @@
 			<tbody>
 
 			</tbody>
-			</table></section></div>
+			</table></section>
+			<div style="width:50%;margin-top:2em;">
+
+			<section>
+				<h1 class="uk-heading-small">Citation</h1>
+				If you find this list useful for your research, please consider citing the following:
+<pre>
+<code>@misc{ambientdirectory2020,
+	title        = {{http://ambient.directory - A collection of ambient, calm and 'unremarkable' technologies}},
+	author       = {Schwede, Carsten and Hermann, Thomas},
+	doi          = {10.4119/unibi/2946295},
+	url          = {https://pub.uni-bielefeld.de/record/2946295},
+	year         = {2020}
+}</code>
+</pre>
+			</section>
+		</div>
+	</div>
+	<div id="drop-overlay">
+		<h1 id="drop-msg">Drop your .bib files to add publications to the list.</h1>
+		<div id="drop-backdrop"></div>
+	</div>
+
 	</body>
 </html>
