@@ -18,7 +18,6 @@ let tableFields = {
 			width: 1
 		}
 	},
-
 	"META.Name": {
 		searchable:true,
 		description: "",
@@ -296,7 +295,7 @@ let tableFields = {
 	"OUTPUT.MEDIUM": {
 		description: "",
 		filter:true,
-		editable: ["AMBIENCE","ASSOCIATED_OBJECT","KNOWN_OBJECT","ARTIFICIAL_OBJECT","?"],
+		editable: ["AMBIENCE","ASSOCIATED_OBJECT","KNOWN_OBJECT","ARTIFICIAL_OBJECT","SCREEN","?"],
 		render: {
 			width: 125
 		}
@@ -305,7 +304,19 @@ let tableFields = {
 		description: "",
 		searchable: true,
 		filter:true,
-		editable: multiple(["AUDIO","VISUAL","HAPTIC","TASTE","SMELL","PAIN","EQUILIBRIO"]),
+		editable: multiple({
+			"AUDIO":"Audio",
+			"VISUAL":"Visual",
+			"HAPTIC":"Haptic",
+			"TASTE":"Taste",
+			"SMELL":"Smell",
+			"PAIN":"Pain",
+			"EQUILIBRIO":"Equilibrio",
+			"AIRMOVE":"Air flow",
+			"POS":"Movement",
+			"SHAPE":"Shape change",
+			"TEMP":"Temperature"
+		}),
 		render: {
 			width: 125
 		}
@@ -333,6 +344,11 @@ let tableFields = {
 		render: {
 			width: 100
 		}
+	},
+	"EVAL.HAS_EVALUATION": {
+		editable: ["YES","NO","?"],
+		filter:true,
+
 	},
 	"EVAL.SAMPLE_SIZE": {
 		description: "",

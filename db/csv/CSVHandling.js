@@ -47,16 +47,21 @@ let loadCSV = function(url,Papa) {
 	});
 };
 
-let exportCSV = (rows,Papa) => {
-	if (!csvHeaders) {
-		return console.error("CSV has not been loaded yet, can't export anything");
-	}
+let exportCSV = (rows,Papa,headers) => {
 	let csvRows = rows.map(row => {
 		let result = {};
-		csvHeaders.forEach(header => {
-			let [field,subField] = header.split(".");
-			result[header] = row[field][subField];;
-		});
+		if (headers) {
+			headers.forEach(header => {
+				let [field,subField] = header.split(".");
+				result[header] = row[field][subField];;
+			});
+		} else {
+			Object.entries(row).forEach(([mainField,subFields]) => {
+				Object.entries(subFields).forEach(([subField,value]) => {
+					result[mainField+"."+subField ]= value;
+				});
+			});
+		}
 		return result;
 	});
 	let result = Papa.unparse(csvRows,{
