@@ -163,9 +163,10 @@ let tableFields = {
 				if (!data) return "";
 				data = data.trim();
 				data = data.replace(/^Abstract:?\s*/i,"");
+				data = data.replace(/"/g,"&quot;");
 				let maxLength = 600;
 				let shortAbstract =  data.length > maxLength ? data.substr(0,maxLength) + "..." : data;
-				return shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a>";
+				return "<span uk-tooltip=\""+data+"\">" + shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a></span>";
 			}
 		}
 	},
@@ -206,7 +207,7 @@ let tableFields = {
 			"ISSUES":"Issues",
 			"CONCEPT":"Concept",
 			"USECASE":"Use Case",
-			"PROTOTYPE":"Protoype",
+			"PROTOTYPE":"Prototype",
 			"OTHER":"Other"
 		}),
 		render: {

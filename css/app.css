@@ -563,3 +563,12 @@ input.uk-input.highlight {
 .dataTables_wrapper {
 	margin-top:2em;
 }
+
+.uk-tooltip {
+	min-width:600px !important;
+	font-size:1.1rem;
+}
+
+[class*='uk-tooltip-top'] {
+	margin-top: 100px;
+  }
