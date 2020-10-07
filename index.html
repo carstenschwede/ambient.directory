@@ -40,11 +40,11 @@
 			document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
 			':35729/livereload.js?snipver=1"></' + 'script>');
 		</script>
-		<script src="lib/jQuery.FileDrop.all.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="css/app.css"/>
 		<script src="lib/utils.js"></script>
 		<script src="lib/enableAutoFilter.js"></script>
+		<script src="lib/unidecode.bundle.js"></script>
 		<script src="lib/enableDragDrop.js"></script>
 		<script src="lib/enableSearchShortcut.js"></script>
 		<script src="lib/enableEditing.js"></script>
@@ -106,8 +106,8 @@
 				<tr>
 					<th colspan=10 class="headerGroup">General</th>
 					<th colspan=6 class="headerGroup">Meta</th>
-					<th colspan=8 class="headerGroup">Mapping</th>
-					<th colspan=7 class="headerGroup">Output</th>
+					<th colspan=6 class="headerGroup">Output</th>
+					<th colspan=8 class="headerGroup">Information Mapping</th>
 					<th colspan=9 class="headerGroup">Evaluation</th>
 				</tr>
 				<tr>
@@ -129,6 +129,13 @@
 					<th>META.TOPIC</th>
 					<th>META.SETTING</th>
 
+					<th>OUTPUT.MODALITY</th>
+					<th>OUTPUT.MEDIUM</th>
+					<th>OUTPUT.ACCESS</th>
+					<th>OUTPUT.ACTIVATION</th>
+					<th>OUTPUT.TRANSITION_TO_FOREGROUND</th>
+					<th>OUTPUT.INFORMATION_BANDWIDTH</th>
+
 					<th>MAPPING.HAS_MAPPING</th>
 					<th>MAPPING.FROM</th>
 					<th>MAPPING.ORIGIN</th>
@@ -137,14 +144,6 @@
 					<th>MAPPING.REPRESENTATION</th>
 					<th>MAPPING.MEANING</th>
 					<th>MAPPING.LEVEL</th>
-
-					<th>OUTPUT.ACTIVATION</th>
-					<th>OUTPUT.TRANSITION_TO_FOREGROUND</th>
-					<th>OUTPUT.MEDIUM</th>
-					<th>OUTPUT.MODALITY</th>
-					<th>OUTPUT.LOCALIZATION</th>
-					<th>OUTPUT.ACCESS</th>
-					<th>OUTPUT.INFORMATION_BANDWIDTH</th>
 
 					<th>EVAL.HAS_EVALUATION</th>
 					<th>EVAL.SAMPLE_SIZE</th>
