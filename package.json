@@ -9,7 +9,14 @@
     "tabletojson": "^2.0.4",
     "papaparse": "^5.3.0",
     "dotenv": "^8.2.0",
-    "js-base64": "^3.5.2"
+    "flexsearch": "^0.6.32",
+    "request-promise": "^4.2.6",
+    "csv": "^5.3.2",
+    "bibtex-parse-js": "^0.0.24",
+    "papa": "^0.0.0",
+    "unidecode": "^0.1.8",
+    "inject-lr-script": "^2.2.0",
+    "stacked": "^1.1.1"
   },
   "scripts": {
     "start": "node tools/devserver.js",
