@@ -54,8 +54,8 @@ If you find this software or the dataset useful for your research, please consid
 @misc{schwedeAmbientDirectoryCollection2020,
 	title        = {{http://ambient.directory - A collection of ambient, calm and 'unremarkable' technologies}},
 	author       = {Schwede, Carsten and Hermann, Thomas},
-	doi          = {10.4119/unibi/2946426},
-	url          = {https://pub.uni-bielefeld.de/record/2946296},
+	doi          = {10.4119/unibi/2946425},
+	url          = {https://pub.uni-bielefeld.de/record/2946295},
 	year         = {2020}
 }
 ```
