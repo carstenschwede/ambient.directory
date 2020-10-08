@@ -24,5 +24,5 @@ const bibtexparse = require("../db/bibtex/bibtexparse.js");
   })
 
   let newBibFileContent = bibtexparse.toBibtex(bib,false);
-  fs.writeFileSync("./db/bibtex/bibtex.bib",newBibFileContent)
+  fs.writeFileSync("./db/bibtex/ambientdirectory.bib",newBibFileContent)
 })();
