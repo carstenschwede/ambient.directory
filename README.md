@@ -17,7 +17,7 @@ The data in both files is aggregated using a web application accessible via http
 
 ## Local installation
 ```sh
-npm i
+npm ci
 npm start
 # open http://localhost:8080
 ```
