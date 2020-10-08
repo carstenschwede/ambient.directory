@@ -164,7 +164,7 @@ let tableFields = {
 				data = data.trim();
 				data = data.replace(/^Abstract:?\s*/i,"");
 				data = data.replace(/"/g,"&quot;");
-				let maxLength = 600;
+				let maxLength = 350;
 				let shortAbstract =  data.length > maxLength ? data.substr(0,maxLength) + "..." : data;
 				return "<span uk-tooltip=\""+data+"\">" + shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a></span>";
 			}
@@ -246,17 +246,18 @@ let tableFields = {
 		searchable: true,
 		filter:true,
 		editable: multiple({
-			"AUDIO":1,
 			"VISUAL":1,
 			"HAPTIC":1,
-			"TASTE":1,
-			"SMELL":1,
 			"PAIN":1,
-			"EQUILIBRIO":1,
 			"AIRMOVE":"Air flow",
 			"POS":"Movement",
+			"TEMP":"Temperature",
+
+			"AUDIO":1,
+			"TASTE":1,
+			"SMELL":1,
 			"SHAPE":"Shape change",
-			"TEMP":"Temperature"
+			"EQUILIBRIO":1
 		}),
 		render: {
 			width: 125
@@ -445,7 +446,8 @@ let tableFields = {
 	"EVAL.COGNITIVE_LOAD": {
 		description: "",
 		filter:true,
-		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL (EYE)","PHYSIOLOGICAL (BRAIN)","PHYSIOLOGICAL (HEART)","PHYSIOLOGICAL (RESP)","PHYSIOLOGICAL (SKIN)","[NA]"]),
+		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL","[NA]"]),
+//		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL (EYE)","PHYSIOLOGICAL (BRAIN)","PHYSIOLOGICAL (HEART)","PHYSIOLOGICAL (RESP)","PHYSIOLOGICAL (SKIN)","[NA]"]),
 		render: {
 			width: 200
 		}
