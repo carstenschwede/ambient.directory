@@ -151,9 +151,10 @@ let tableFields = {
 		editable: true,
 		render: {
 			width: "auto"
-		}
+		},
+		"orderSequence": [ "desc","asc" ]
 	},
-	"PUB.CitationsPerYear": {title:"Cites/Years"},
+	"PUB.CitationsPerYear": {"orderSequence": [ "desc","asc" ],title:"Cites/Years"},
 	"BIBTEX.abstract": {
 		title:"Abstract",
 		filter:"*",
@@ -164,9 +165,11 @@ let tableFields = {
 				data = data.trim();
 				data = data.replace(/^Abstract:?\s*/i,"");
 				data = data.replace(/"/g,"&quot;");
+				data = data.replace(/\\&/g,"&");
 				let maxLength = 350;
 				let shortAbstract =  data.length > maxLength ? data.substr(0,maxLength) + "..." : data;
-				return "<span uk-tooltip=\""+data+"\">" + shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a></span>";
+				data = data.replace(/;|:/g," ");
+				return "<span uk-tooltip=\"cls:abstract-tooltip; title:"+data+"\">" + shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a></span>";
 			}
 		}
 	},
@@ -250,13 +253,13 @@ let tableFields = {
 			"HAPTIC":1,
 			"PAIN":1,
 			"AIRMOVE":"Air flow",
-			"POS":"Movement",
+			"POS":"Position",
 			"TEMP":"Temperature",
 
 			"AUDIO":1,
 			"TASTE":1,
 			"SMELL":1,
-			"SHAPE":"Shape change",
+			"SHAPE":"Shape",
 			"EQUILIBRIO":1
 		}),
 		render: {
@@ -267,13 +270,14 @@ let tableFields = {
 		description: "",
 		filter:true,
 		editable: {
-			"AMBIENCE":1,
 			"ASSOCIATED_OBJECT": "Object [Associated]",
 			"KNOWN_OBJECT": "Object [Known]",
 			"ARTIFICIAL_OBJECT": "Object [Artificial]",
-			"LIGHT":1,
+			"AMBIENCE":1,
 			"PROJECTION": 1,
 			"SCREEN":1,
+			"LED":"LED",
+			"SPEAKER":1,
 			"?":1
 		},
 		render: {
@@ -298,7 +302,14 @@ let tableFields = {
 	},
 
 	"OUTPUT.ACTIVATION": {
-		editable: ["CONTINUOUS","EVENTBASED","OBJECTBASED","USERBASED","?"],
+		editable: {
+			"CONTINUOUS":1,
+			"EVENTBASED":1,
+			"OBJECTBASED":1,
+			"USER ACTION":1,
+			"USER INTENT":1,
+			"?":1
+		},
 		filter:true,
 		render: {
 			width: 125
@@ -341,7 +352,7 @@ let tableFields = {
 	"MAPPING.ORIGIN": {
 		description: "",
 		filter:true,
-		editable: ["LOCAL","NEAR","REMOTE","VIRTUAL","?"],
+		editable: ["PERSONAL","LOCAL","NEAR","REMOTE","VIRTUAL","?"],
 		render: {
 			width: 100
 		}
@@ -399,6 +410,7 @@ let tableFields = {
 		description: "",
 		filter:true,
 		editable: true,
+		"orderSequence": [ "desc","asc" ],
 		render: {
 			width: "auto"
 		}

@@ -53,12 +53,13 @@ let exportCSV = (rows,Papa,headers) => {
 		if (headers) {
 			headers.forEach(header => {
 				let [field,subField] = header.split(".");
-				result[header] = row[field][subField];;
+				let value = row[field][subField];
+				result[header] = (value && value.split) ? value.split(",").filter(x => !!x).join(",") : value;
 			});
 		} else {
 			Object.entries(row).forEach(([mainField,subFields]) => {
 				Object.entries(subFields).forEach(([subField,value]) => {
-					result[mainField+"."+subField ]= value;
+					result[mainField+"."+subField ]= (value && value.split) ? value.split(",").filter(x => !!x).join(",") : value;
 				});
 			});
 		}
