@@ -254,13 +254,13 @@ let tableFields = {
 			"PAIN":1,
 			"AIRMOVE":"Air flow",
 			"POS":"Position",
-			"TEMP":"Temperature",
+			"SHAPE":"Shape",
 
 			"AUDIO":1,
 			"TASTE":1,
 			"SMELL":1,
-			"SHAPE":"Shape",
-			"EQUILIBRIO":1
+			"EQUILIBRIO":1,
+			"HEAT":1
 		}),
 		render: {
 			width: 125
