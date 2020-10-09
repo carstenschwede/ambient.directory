@@ -5,9 +5,6 @@ const {
 const octokit = new Octokit({
 	auth: process.env.GITHUBPAT
 });
-const {
-	Base64
-} = require("js-base64")
 
 const tabletojson = require('tabletojson').Tabletojson;
 
@@ -26,11 +23,11 @@ let {
 	repo: "ambient.directory",
 	committer: {
 		name: "Carsten Schwede",
-		email: "cschwede@techfak.uni-bielefeld.de"
+		email: ["cschw","ede@","techf","ak.uni-bie","lefeld.de"].join("")
 	},
 	author: {
 		name: "Carsten Schwede",
-		email: "cschwede@techfak.uni-bielefeld.de"
+		email: ["cschw","ede@","techf","ak.uni-bie","lefeld.de"].join("")
 	}
 };
 
@@ -80,14 +77,26 @@ const cheerio = require("cheerio");
 
 
 	let bibById = {};
-
-	bibtexParse.toJSON(fs.readFileSync("./db/bibtex/bibtex.bib").toString()).forEach(entry => {
+	let bibFile = "./db/bibtex/ambientdirectory.bib";
+	bibtexParse.toJSON(fs.readFileSync(bibFile).toString()).forEach(entry => {
 		bibById[entry.citationKey] = entry;
 	});
 
-	result.filter(issue => {
+	let groupedByCitationKey = {};
+
+	let openIssues = 	result.filter(issue => {
 		return issue.state == "open" && !issue.pull_request;
-	}).map(issue => {
+	});
+
+	let approvedOpen = openIssues.filter(issue => {
+		let labels = issue.labels.map(label => label.name);
+		return labels.includes("approved");
+	});
+
+	console.log("Total of",openIssues.length,"open issues found.");
+	console.log("Total of",approvedOpen.length,"pending issues found that are ready to be merged.");
+
+	approvedOpen.map(issue => {
 		let $ = cheerio.load(issue.body);
 
 		$('code').toArray().map(code => {
@@ -102,7 +111,6 @@ const cheerio = require("cheerio");
 			}
 		});
 
-		let newBibTex = bibtexParse.toBibtex(Object.values(bibById),false);
 		const _ = require("lodash")
 		let changeRequests = _.flatten($('table').toArray().map(table => {
 			let tableHtml = $(table).html();
@@ -111,15 +119,12 @@ const cheerio = require("cheerio");
 		})).filter(x => !!x);
 
 
-		console.log(changeRequests);
 		changeRequests.filter(cr => cr.Field == "DB.ID").forEach(cr => {
 			let dbId = cr.New;
 			let entry = {DB:{ID:dbId,REVISION:0},PUB:{CitationKey:cr.CitationKey,},META:{},MAPPING:{},OUTPUT:{},EVAL:{}};
 			db[dbId] = entry;
 			csvRows.push(entry);
 		});
-
-		let groupedByCitationKey = {};
 
 		changeRequests.forEach(cr => {
 			let currentData = db[cr.dbId];
@@ -131,11 +136,14 @@ const cheerio = require("cheerio");
 			groupedByCitationKey[cr.CitationKey] = groupedByCitationKey[cr.CitationKey] || [];
 			groupedByCitationKey[cr.CitationKey].push(cr);
 		});
+	});
+
+
 
 		//For each CitationKey create new pull request
+		let newCSVRows = JSON.parse(JSON.stringify(csvRows));
+
 		Object.entries(groupedByCitationKey).forEach(([citationKey, updates]) => {
-			let newCSVRows = JSON.parse(JSON.stringify(csvRows));
-			console.log(updates);
 			updates.forEach(cr => {
 				let entry = newCSVRows.filter(row => row.DB.ID == cr.dbId)[0];
 				if (!entry) {
@@ -144,12 +152,25 @@ const cheerio = require("cheerio");
 				let [mainField, subField] = cr.Field.split(".");
 				entry[mainField][subField] = cr.New;
 				entry.DB.REVISION++;
-				console.log(entry);
+				console.log("Updated",entry.PUB.CitationKey,entry.DB.ID);
 			});
-			let newCSV = exportCSV(newCSVRows, papa);
-			console.log(newCSV);
-			//fs.writeFileSync("amiPR.csv",newCSV);
+		});
 
+		let newCSV = exportCSV(newCSVRows, papa);
+		fs.writeFileSync(csvFile,newCSV);
+		//console.log(newCSV);
+
+		let newBibTex = bibtexParse.toBibtex(Object.values(bibById),false);
+		fs.writeFileSync(bibFile,newBibTex);
+
+
+
+})();
+
+
+
+
+			/*
 			return;
 
 			octokit.repos.createOrUpdateFileContents({
@@ -164,7 +185,4 @@ const cheerio = require("cheerio");
 				"author.name": author.name,
 				"author.email": author.email
 			});
-
-		});
-	});
-})();
+			*/
