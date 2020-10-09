@@ -591,14 +591,28 @@ input.uk-input.highlight {
 }
 
 .uk-tooltip {
+	display:inline-block;
+}
+
+.abstract-tooltip {
+    background: #fff;
+    color: #666;
+	box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 	min-width:600px !important;
 	font-size:1.1rem;
 	pointer-events: none;
+	margin-top: 500px !important;
+	padding:1em;
 }
 
-[class*='uk-tooltip-top'] {
-	margin-top: 100px;
-  }
+.uk-tooltip.abstract{
+	min-width:600px !important;
+	font-size:1.1rem;
+	pointer-events: none;
+	margin-top: 100px !important;
+	box-sizing: border-box;
+
+}
 
   ul.checkbox  {
 	margin: 0;
