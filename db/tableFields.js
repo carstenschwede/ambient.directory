@@ -6,16 +6,18 @@ let multiple = function(obj) {
 
 let tableFields = {
 	"DB.ID": {
-		title: " ",
+		title: "Actions",
 		description: "",
 		editable: false,
 		orderable:false,
 		searchable:true,
 		render: {
-			transform: (data) => {
-				return "<span class='dbId' id='" + data + "'>"+data+"</span>";
-			},
-			width: 1
+			transform: (data,type,entry) => {
+				let html = "<span id='"+entry.DB.ID+"'class='hidden'>"+entry.DB.ID+"," + entry.PUB.CitationKey + "</span>";
+				html += '<a href="#" uk-tooltip="Duplicate"  class="action-row-duplicate uk-icon-link uk-margin-small-right" uk-icon="move"></a>';
+				html += '<a href="#" uk-tooltip="Delete"  class="action-row-delete uk-icon-link" uk-icon="trash"></a>';
+				return html;
+			}
 		}
 	},
 	"META.Name": {
@@ -72,10 +74,10 @@ let tableFields = {
 				if (!data) return "";
 				if (type !== "display") return data;
 
-				let authors = data.split(" and ").filter(x => !!x && x != "").map(author => {
+				let authors = _.uniq(data.split(" and ").filter(x => !!x && x != "").map(author => {
 					author = author;
 					return author.split(", ").reverse().join(" ");
-				}).map(author => {
+				})).map(author => {
 					return "<li>" + author +  "</li>";
 				}).join("\n");
 
@@ -239,7 +241,7 @@ let tableFields = {
 		description: "",
 		searchable:true,
 		filter:true,
-		editable: multiple(["HOME","EDUCATION","WORKPLACE","TRANSPORT","MEDICAL","SOCIAL","OTHER"]),
+		editable: multiple(["HOME","EDUCATION","WORKPLACE","URBAN","TRANSPORT","MEDICAL","SOCIAL","OTHER"]),
 		render: {
 			width: "auto"
 		}
