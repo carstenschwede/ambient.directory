@@ -66,7 +66,8 @@ let tableFields = {
 		searchable:true,
 		filter: {
 			transform: function(data) {
-				return data.split(" and ").filter(x => !!x && x != "");
+				//Return only lastname for filtering
+				return data.split(" and ").filter(x => !!x && x != "").map(x => x.split(",")[0]);
 			}
 		},
 		render: {
@@ -191,6 +192,7 @@ let tableFields = {
 		filter:true,
 		editable: multiple({
 			"AMI":"Ambient Intelligence",
+			"AS":"Ambient Sensing",
 			"AD":"Ambient Display",
 			"AIS":"Ambient Information System",
 			"UI": "User Interface",
