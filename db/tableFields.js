@@ -193,8 +193,7 @@ let tableFields = {
 		editable: multiple({
 			"AMI":"Ambient Intelligence",
 			"AS":"Ambient Sensing",
-			"AD":"Ambient Display",
-			"AIS":"Ambient Information System",
+			"ADAIS":"Ambient InfoSys/Display",
 			"UI": "User Interface",
 			"TUI":"Tangible User Interface",
 			"IOT":"Internet-of-Things",
@@ -270,20 +269,31 @@ let tableFields = {
 			width: 125
 		}
 	},
-	"OUTPUT.MEDIUM": {
+	"OUTPUT.SIMILARITY": {
 		description: "",
 		filter:true,
-		editable: {
+		editable: multiple({
+			"ART":"Art",
 			"ASSOCIATED_OBJECT": "Object [Associated]",
 			"KNOWN_OBJECT": "Object [Known]",
 			"ARTIFICIAL_OBJECT": "Object [Artificial]",
-			"AMBIENCE":1,
+			"NA":"N/A"
+		}),
+		render: {
+			width: 125
+		}
+	},
+	"OUTPUT.TECH": {
+		description: "",
+		filter:true,
+		editable: multiple({
 			"PROJECTION": 1,
 			"SCREEN":1,
 			"LED":"LED",
 			"SPEAKER":1,
-			"?":1
-		},
+			"MOTOR":1,
+			"ROBOT":1
+		}),
 		render: {
 			width: 125
 		}
