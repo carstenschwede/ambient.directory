@@ -274,9 +274,9 @@ let tableFields = {
 		filter:true,
 		editable: multiple({
 			"ART":"Art",
-			"ASSOCIATED_OBJECT": "Object [Associated]",
-			"KNOWN_OBJECT": "Object [Known]",
-			"ARTIFICIAL_OBJECT": "Object [Artificial]",
+			"ASSOCIATED": "Associated",
+			"KNOWN": "Known",
+			"ARTIFICIAL": "Artificial",
 			"NA":"N/A"
 		}),
 		render: {
@@ -318,10 +318,9 @@ let tableFields = {
 	"OUTPUT.ACTIVATION": {
 		editable: {
 			"CONTINUOUS":1,
-			"EVENTBASED":1,
-			"OBJECTBASED":1,
-			"USER ACTION":1,
-			"USER INTENT":1,
+			"EVENT":1,
+			"OBJECT":1,
+			"USER":1,
 			"?":1
 		},
 		filter:true,
