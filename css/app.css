@@ -551,6 +551,11 @@ code {
 	border: 0;
 }
 
+tr.highlighted td{
+	border-top:2px dashed black;
+	border-bottom:2px dashed black;
+}
+
 pre {
 	background-color:#fcfcfc;
 }
