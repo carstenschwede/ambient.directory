@@ -143,7 +143,7 @@ let tableFields = {
 		render: {
 			transform: (data) => {
 				if (!data) return "";
-				return "<a class='external-link' href='" + data + "' target='_blank'></a>";
+				return "<a class='external-link' href='" + data + "' target='_blank'>🔗</a>";
 			},
 			width: "auto"
 		}
@@ -176,16 +176,17 @@ let tableFields = {
 			}
 		}
 	},
-
+/*
 	"META.Description": {
 		description: "",
 		filter:"*",
 		editable: true,
 		render: {
 			width: 200
-		}
+		},
+		hide:true
 	},
-
+*/
 	"META.SCOPE": {
 		description: "",
 		searchable:true,

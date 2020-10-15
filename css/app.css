@@ -427,10 +427,13 @@ fieldset {
 
 
 .external-link {
+	/*
 	background-image: url(../images/external-link-ltr-icon.svg);
 	background-position: center right;
 	background-repeat: no-repeat;
 	padding-right: 13px;
+	*/
+
 }
 
 
@@ -472,6 +475,19 @@ fieldset {
 	font-weight:bold;
 	min-width:200px;
 	text-align:center;
+}
+
+
+.META-Name {
+	font-weight:bold;
+	min-width:200px;
+	text-align:center;
+}
+
+.BIBTEX-url {
+	min-width:50px;
+	max-width:50px;
+	width:50px;
 }
 
 .META-Description {

@@ -16,16 +16,21 @@
 		<script src="db/bibtex/bibtexparse.js"></script>
 
 
+		<!--- Styling -->
 		<!--- UIKIT -->
 		<!-- UIkit CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/css/uikit.min.css" />
 
 		<!-- UIkit JS -->
-		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit.min.js"></script>
+		<script src="./vendor/uikit@3.5.8.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.8/dist/js/uikit-icons.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.uikit.min.css"/>
 		<script src="https://cdn.datatables.net/1.10.22/js/dataTables.uikit.min.js"></script>
+
+
+
+
 
 
 		<!--- HIGHLIGHT SEARCH RESULTS -->
@@ -37,6 +42,7 @@
 		<script src="lib/utils.js"></script>
 		<script src="lib/enableAutoFilter.js"></script>
 		<script src="lib/unidecode.bundle.js"></script>
+		<script src="lib/stringSimilarity.bundle.js"></script>
 		<script src="lib/enableDragDrop.js"></script>
 		<script src="lib/enableSearchShortcut.js"></script>
 		<script src="lib/enableEditing.js"></script>
@@ -89,15 +95,15 @@
 		<img src="images/dotsloader.gif"/><br/>
 		Parsing database and bibliography. Please wait...
 	</div>
-		<div class="container">
+		<div class="container" >
 
 			<section>
-			<table id="example" class="uk-table uk-table-hover uk-table-striped" style="width:100%">
+			<table id="example" class="uk-table uk-table-hover uk-table-striped" style="width:960px">
 
 			<thead>
 				<tr>
 					<th colspan=10 class="headerGroup">General</th>
-					<th colspan=6 class="headerGroup">Meta</th>
+					<th colspan=5 class="headerGroup">Meta</th>
 					<th colspan=7 class="headerGroup">Output</th>
 					<th colspan=8 class="headerGroup">Information Mapping</th>
 					<th colspan=9 class="headerGroup">Evaluation</th>
@@ -114,7 +120,6 @@
 					<th>PUB.CitationsPerYear</th>
 					<th>BIBTEX.abstract</th>
 
-					<th>META.Description</th>
 					<th>META.SCOPE</th>
 					<th>META.FOCUS</th>
 					<th>META.GOAL</th>

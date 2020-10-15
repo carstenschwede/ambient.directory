@@ -16,7 +16,8 @@
     "papa": "^0.0.0",
     "unidecode": "^0.1.8",
     "inject-lr-script": "^2.2.0",
-    "stacked": "^1.1.1"
+    "stacked": "^1.1.1",
+    "string-similarity": "^4.0.2"
   },
   "scripts": {
     "start": "node tools/devserver.js",
