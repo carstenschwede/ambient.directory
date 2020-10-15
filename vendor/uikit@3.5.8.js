@@ -3604,33 +3604,30 @@
 				window.uikitUpdatesDisabled = false;
 			};
 
+            let wrapUIMethod = function(method) {
+                return function() {
+                    window.enableUIKitUpdates();
+                    let result = method.apply(false,arguments);
+                    setTimeout(() => {
+                        window.disableUIKitUpdates();
+                    },100);
+                    return result;
+                }
+            }
+
 			setTimeout(() => {
 				let oldModals = {};
 				Object.entries(UIkit.modal).forEach(([name,fn]) => {
-					oldModals[name] = function() {
-						window.enableUIKitUpdates();
-						let res = fn.apply(false,arguments);
-						setTimeout(() => {
-							window.disableUIKitUpdates();
-						},100);
-						return res;
-					}
+					oldModals[name] = wrapUIMethod(fn);
 				});
 
 				let oldModal = UIkit.modal;
-				UIkit.modal = function() {
-					window.enableUIKitUpdates();
-					let res = oldModal.apply(false,arguments);
-					setTimeout(() => {
-						window.disableUIKitUpdates();
-					},100);
-					return res;
-				};
-
+                UIkit.modal = wrapUIMethod(oldModal);
 				Object.entries(oldModals).forEach(([name,fn]) => {
 					UIkit.modal[name] = fn;
-				});
+                });
 
+                UIkit.offcanvas = wrapUIMethod(UIkit.offcanvas);
 			},1000);
 
             (new MutationObserver(function (mutations) {

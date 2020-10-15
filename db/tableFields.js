@@ -165,14 +165,10 @@ let tableFields = {
 		render: {
 			transform: (data,b,entry) => {
 				if (!data) return "";
-				data = data.trim();
-				data = data.replace(/^Abstract:?\s*/i,"");
-				data = data.replace(/"/g,"&quot;");
-				data = data.replace(/\\&/g,"&");
 				let maxLength = 350;
 				let shortAbstract =  data.length > maxLength ? data.substr(0,maxLength) + "..." : data;
 				data = data.replace(/;|:/g," ");
-				return "<span uk-tooltip=\"cls:abstract-tooltip; title:"+data+"\">" + shortAbstract + "<a class='external-link' href='#' onclick='showAbstract(\""+entry.DB.ID+"\");return false;'></a></span>";
+				return "<span>" + shortAbstract + "</span>";
 			}
 		}
 	},
