@@ -64,12 +64,12 @@ let tableFields = {
 	},
 	"BIBTEX.author": {
 		searchable:true,
-		filter: {
+		filter: "*",/*{
 			transform: function(data) {
 				//Return only lastname for filtering
 				return data.split(" and ").filter(x => !!x && x != "").map(x => x.split(",")[0]);
 			}
-		},
+		},*/
 		render: {
 			transform: function(data,type) {
 				if (!data) return "";
@@ -239,9 +239,9 @@ let tableFields = {
 		description: "",
 		searchable:true,
 		filter:true,
-		editable: multiple(["HOME","EDUCATION","WORKPLACE","URBAN","TRANSPORT","MEDICAL","SOCIAL","OTHER"]),
+		editable: multiple(["HOME","EDUCATION","WORKPLACE","URBAN","OTHER","MEDICAL","SOCIAL","EXERCISE","TRANSPORT"]),
 		render: {
-			width: "auto"
+			width:  125
 		}
 	},
 	"OUTPUT.MODALITY": {
