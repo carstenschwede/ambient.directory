@@ -478,12 +478,6 @@ fieldset {
 }
 
 
-.META-Name {
-	font-weight:bold;
-	min-width:200px;
-	text-align:center;
-}
-
 .BIBTEX-url {
 	min-width:50px;
 	max-width:50px;
@@ -660,6 +654,7 @@ input.uk-input.highlight {
 	margin-left: 0;
   }
 
+
   .OUTPUT-MODALITY fieldset{
 	width:10px;
   }
@@ -668,6 +663,23 @@ input.uk-input.highlight {
 	  column-count:2;
 	  column-gap:0px;
   }
+
+
+  .META-SETTING fieldset{
+	width:10px;
+  }
+
+  .META-SETTING ul.checkbox {
+	  column-count:2;
+	  column-gap:5px;
+  }
+
+
+
+
+
+
+
 
   .citation {
 	  display: inline-block;
@@ -681,3 +693,18 @@ input.uk-input.highlight {
   .uk-icon svg {
 	  pointer-events:none;
   }
+
+  #abstract-container > div {
+	width:25vw;
+  }
+
+#abstract-text {
+	font-size:1.5rem;
+	line-height:1.9rem;
+}
+
+
+
+select {
+	font: 400 1rem Roboto;
+}
