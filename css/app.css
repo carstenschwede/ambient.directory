@@ -568,10 +568,28 @@ pre {
 
 }
 
-
 #drop-overlay.state-over {
 	display: block;
 }
+
+
+#drop-processing {
+	border:1px solid red;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+	width: 100%;
+	display:none;
+	z-index:200;
+	background-color:rgba(200,200,200,0.8);
+}
+
+#drop-processing.state-over {
+	display: block;
+}
+
 
 #drop-msg {
     border: 1px solid #333;
@@ -597,14 +615,14 @@ td.highlight {
 */
 
 th.highlight {
-	background-color:rgba( 200,100,100, 0.2 );
-	border-left:1px solid pink;
-	border-right:1px solid pink;
+	background-color:#a5ff2c52;
+	border-left:1px solid #ccff88;
+	border-right:1px solid #ccff88;
 }
 
 input.uk-input.highlight {
-	border-color:red;
-	background-color:#fdd;
+	border-color:#91ff00;
+	background-color:#a5ff2c52;
 }
 
 .dataTables_wrapper {
@@ -707,4 +725,13 @@ input.uk-input.highlight {
 
 select {
 	font: 400 1rem Roboto;
+}
+
+.button-toggled {
+	border: 2px solid #333 !important;
+	margin: -2px;
+}
+
+#parcoords {
+	display:none;
 }

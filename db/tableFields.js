@@ -272,7 +272,7 @@ let tableFields = {
 		editable: multiple({
 			"ART":"Art",
 			"ASSOCIATED": "Associated",
-			"KNOWN": "Known",
+			"FAMILIAR": "Familiar",
 			"ARTIFICIAL": "Artificial",
 			"NA":"N/A"
 		}),

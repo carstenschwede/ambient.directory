@@ -30,6 +30,8 @@
 
 
 
+		<link rel="stylesheet" type="text/css" href="css/parcoords.css"/>
+		<script src="lib/parcoords.standalone.js"></script>
 
 
 
@@ -46,6 +48,7 @@
 		<script src="lib/enableDragDrop.js"></script>
 		<script src="lib/enableSearchShortcut.js"></script>
 		<script src="lib/enableEditing.js"></script>
+		<script src="lib/enableParCoords.js"></script>
 		<script src="db/tableFields.js"></script>
 		<script src="db/csv/CSVHandling.js"></script>
 		<script src="lib/app.js"></script>
@@ -106,8 +109,10 @@
 		<img src="images/dotsloader.gif"/><br/>
 		Parsing database and bibliography. Please wait...
 	</div>
-		<div class="container" >
 
+	<div id="parcoords" class="parcoords" style="width:100%;height:600px;border:1px solid red"></div>
+
+	<div class="container" >
 			<section>
 			<table id="example" class="uk-table uk-table-hover uk-table-striped" style="width:960px">
 
@@ -187,6 +192,11 @@
 	</div>
 	<div id="drop-overlay">
 		<h1 id="drop-msg">Drop your .bib files to add publications to the list.</h1>
+		<div id="drop-backdrop"></div>
+	</div>
+	<div id="drop-processing">
+		<h1 id="drop-msg"><div uk-spinner></div><br/>Processing...</h1>
+
 		<div id="drop-backdrop"></div>
 	</div>
 
