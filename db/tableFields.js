@@ -134,6 +134,7 @@ let tableFields = {
 		render: {
 			transform: (data) => {
 				if (!data) return "";
+				return "<a class='external-link' href='https://sci-hub.st/" + data + "' target='_blank'>"+data+"</a>";
 				return "<a class='external-link' href='https://doi.org/" + data + "' target='_blank'>"+data+"</a>";
 			},
 			width: "auto"
@@ -244,6 +245,18 @@ let tableFields = {
 			width:  125
 		}
 	},
+
+	"META.PSYCHOLOGICAL_GROUNDING": {
+		title: "PSYCH. GROUNDING",
+		description: "",
+		searchable:true,
+		filter:true,
+		editable: multiple(["PERIPHERAL_ATTENTION","AWARENESS_CONSCIOUSNESS","SALIENCE","COGNITIVE_LOAD","SPATIAL_OBJECT_BINDING","MEMORY_OTHER","NONE"]),
+		render: {
+			width: 150
+		}
+	},
+
 	"OUTPUT.MODALITY": {
 		description: "",
 		searchable: true,
@@ -343,6 +356,26 @@ let tableFields = {
 			width: 100
 		}
 	},
+
+	"OUTPUT.INFORMATION_PPP": {
+		description: "",
+		searchable:true,
+		filter:true,
+		editable: multiple(["PUSH","PULL","PRESENCE"]),
+		render: {
+			width: 125
+		}
+	},
+	"OUTPUT.BACKGROUND_EMBEDDING": {
+		description: "",
+		searchable:true,
+		filter:true,
+		editable: multiple(["PERIPHERAL_PLACEMENT","CAMOUFLAGE","MIMICRY","AUGMENTATION","INVISIBILITY","[NA]"]),
+		render: {
+			width: 150
+		}
+	},
+
 	"MAPPING.HAS_MAPPING": {
 		description: "",
 		filter:true,
