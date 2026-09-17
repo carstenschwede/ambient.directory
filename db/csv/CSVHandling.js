@@ -5,7 +5,7 @@ let convertCSV = function(results) {
 	let transformed = results.map(row => {
 		let result = csvHeaders.reduce((acc,cur,idx) => {
 			if (!cur) return acc;
-			row[idx] = row[idx].trim();
+			row[idx] = (row[idx] || "").trim();
 			let [field,subField] = cur.split(".");
 			acc[field] = acc[field] || {};
 
