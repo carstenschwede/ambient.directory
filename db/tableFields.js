@@ -248,10 +248,21 @@ let tableFields = {
 
 	"META.PSYCHOLOGICAL_GROUNDING": {
 		title: "PSYCH. GROUNDING",
-		description: "",
+		description: "Psychological concepts the paper draws on (mentioned, framing or motivating the approach)",
 		searchable:true,
 		filter:true,
-		editable: multiple(["PERIPHERAL_ATTENTION","AWARENESS_CONSCIOUSNESS","SALIENCE","COGNITIVE_LOAD","SPATIAL_OBJECT_BINDING","MEMORY_OTHER","NONE"]),
+		editable: multiple(["PERIPHERAL_ATTENTION","AWARENESS_CONSCIOUSNESS","SALIENCE","PERCEPTION","ICONICITY","HABITUATION","COGNITIVE_LOAD","SPATIAL_OBJECT_BINDING","MEMORY_OTHER","NONE"]),
+		render: {
+			width: 150
+		}
+	},
+
+	"META.PSYCHOLOGICAL_GROUNDING_INFORMED": {
+		title: "PSYCH. INFORMED",
+		description: "Psychological concepts informing a concrete design parameter, mapping, threshold or rule.",
+		searchable:true,
+		filter:true,
+		editable: multiple(["PERIPHERAL_ATTENTION","AWARENESS_CONSCIOUSNESS","SALIENCE","PERCEPTION","ICONICITY","HABITUATION","COGNITIVE_LOAD","SPATIAL_OBJECT_BINDING","MEMORY_OTHER","NONE"]),
 		render: {
 			width: 150
 		}
