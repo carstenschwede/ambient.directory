@@ -64,12 +64,7 @@ let tableFields = {
 	},
 	"BIBTEX.author": {
 		searchable:true,
-		filter: "*",/*{
-			transform: function(data) {
-				//Return only lastname for filtering
-				return data.split(" and ").filter(x => !!x && x != "").map(x => x.split(",")[0]);
-			}
-		},*/
+		filter: "*",
 		render: {
 			transform: function(data,type) {
 				if (!data) return "";
@@ -96,45 +91,10 @@ let tableFields = {
 			width: 300
 		}
 	},
-/*
-	"PUB.Title": {
-		hide: true,
-		description: "",
-		editable: false,
-		render: {
-			width: "auto"
-		}
-	},
-	"PUB.Author": {
-		hide: true,
-		description: "",
-		editable: false,
-		render: {
-			width: "auto"
-		}
-	},
-	"PUB.Year": {
-		hide: true,
-		description: "",
-		editable: false,
-		render: {
-			width: "auto"
-		}
-	},
-	"PUB.Link": {
-		hide: true,
-		description: "",
-		editable: false,
-		render: {
-			width: "auto"
-		}
-	},
-*/
 	"BIBTEX.doi": {
 		render: {
 			transform: (data) => {
 				if (!data) return "";
-				return "<a class='external-link' href='https://sci-hub.st/" + data + "' target='_blank'>"+data+"</a>";
 				return "<a class='external-link' href='https://doi.org/" + data + "' target='_blank'>"+data+"</a>";
 			},
 			width: "auto"
@@ -173,17 +133,6 @@ let tableFields = {
 			}
 		}
 	},
-/*
-	"META.Description": {
-		description: "",
-		filter:"*",
-		editable: true,
-		render: {
-			width: 200
-		},
-		hide:true
-	},
-*/
 	"META.SCOPE": {
 		description: "",
 		searchable:true,
@@ -318,15 +267,7 @@ let tableFields = {
 		render: {
 			width: 125
 		}
-	},/*
-	"OUTPUT.LOCALIZATION": {
-		description: "",
-		filter:true,
-		editable: ["AMBIENCE","DIRECTIONAL","ROUGHLY","EXACT","?"],
-		render: {
-			width: 125
-		}
-	},*/
+	},
 	"OUTPUT.ACCESS": {
 		description: "",
 		filter:true,
@@ -513,7 +454,6 @@ let tableFields = {
 		description: "",
 		filter:true,
 		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL","[NA]"]),
-//		editable: multiple(["QUESTIONNAIRE","DUAL_TASK","TASK_SHEDDING","PHYSIOLOGICAL (EYE)","PHYSIOLOGICAL (BRAIN)","PHYSIOLOGICAL (HEART)","PHYSIOLOGICAL (RESP)","PHYSIOLOGICAL (SKIN)","[NA]"]),
 		render: {
 			width: 200
 		}
